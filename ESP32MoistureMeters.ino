@@ -63,23 +63,14 @@ void loop() {
   WiFiClient client = server.available();
 
   int Analog1 = analogRead(36);
-  delay(100); // Small delay between readings
   int Analog2 = analogRead(39);
-  delay(100);
   int Analog3 = analogRead(34);
-  delay(100);
   int Analog4 = analogRead(35);
-  delay(100);
   int Analog5 = analogRead(32);
-  delay(100);
   int Analog6 = analogRead(33);
-  delay(100);
   int Analog7 = analogRead(25);
-  delay(100);
   int Analog8 = analogRead(26);
-  delay(100);
   int Analog9 = analogRead(27);
-  delay(100);
   int Analog10 = analogRead(14);
 
   Serial.print("Analog1 (Monstera): ");
