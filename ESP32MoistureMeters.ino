@@ -2,8 +2,8 @@
 
 WiFiServer server(80);
 
-const char *ssid = "";
-const char *password = "";
+const char *ssid = "";     // Your network username
+const char *password = ""; // Your network password
 
 const int dry1 = 2836;
 const int wet1 = 937;
@@ -22,18 +22,6 @@ const int wet5 = 977;
 
 const int dry6 = 2832;
 const int wet6 = 979;
-
-const int dry7 = 2797;
-const int wet7 = 958;
-
-const int dry8 = 2914;
-const int wet8 = 1056;
-
-const int dry9 = 2896;
-const int wet9 = 1054;
-
-const int dry10 = 2886;
-const int wet10 = 1024;
 
 void setup() {
   Serial.begin(115200);
@@ -68,10 +56,6 @@ void loop() {
   int Analog4 = analogRead(35);
   int Analog5 = analogRead(32);
   int Analog6 = analogRead(33);
-  int Analog7 = analogRead(25);
-  int Analog8 = analogRead(26);
-  int Analog9 = analogRead(27);
-  int Analog10 = analogRead(14);
 
   Serial.print("Analog1 (Monstera): ");
   Serial.println(Analog1);
@@ -85,14 +69,6 @@ void loop() {
   Serial.println(Analog5);
   Serial.print("Analog6 (False Aralia): ");
   Serial.println(Analog6);
-  Serial.print("Analog7 (Nerve Plant): ");
-  Serial.println(Analog7);
-  Serial.print("Analog8 (Monstera 2): ");
-  Serial.println(Analog8);
-  Serial.print("Analog9 (Hoya): ");
-  Serial.println(Analog9);
-  Serial.print("Analog10 (Monstera 3): ");
-  Serial.println(Analog10);
 
   int MonsteraHumidity = map(Analog1, wet1, dry1, 100, 0);      
   int PothosHumidity = map(Analog2, wet2, dry2, 100, 0);        
@@ -100,10 +76,6 @@ void loop() {
   int VenusHumidity = map(Analog4, wet4, dry4, 100, 0);         
   int AloeHumidity = map(Analog5, wet5, dry5, 100, 0);          
   int FalseAraliaHumidity = map(Analog6, wet6, dry6, 100, 0);   
-  int NervePlantHumidity = map(Analog7, wet7, dry7, 100, 0);    
-  int Monstera2Humidity = map(Analog8, wet8, dry8, 100, 0);     
-  int HoyaHumidity = map(Analog9, wet9, dry9, 100, 0);          
-  int Monstera3Humidity = map(Analog10, wet10, dry10, 100, 0);  
 
   if (client) {
     Serial.println("New Client.");
@@ -170,31 +142,7 @@ void loop() {
             client.println("<h2>False Aralia</h2>");
             client.println("<div class='reading'>Moisture Level: <span class='humidity'>" + String(FalseAraliaHumidity) + "%</span></div>");
             client.println("</div>");
-
-            // Nerve Plant
-            client.println("<div class='sensor " + getColor(NervePlantHumidity, 40) + "'>");
-            client.println("<h2>Nerve Plant</h2>");
-            client.println("<div class='reading'>Moisture Level: <span class='humidity'>" + String(NervePlantHumidity) + "%</span></div>");
-            client.println("</div>");
-
-            // Monstera 2
-            client.println("<div class='sensor " + getColor(Monstera2Humidity, 40) + "'>");
-            client.println("<h2>Monstera 2</h2>");
-            client.println("<div class='reading'>Moisture Level: <span class='humidity'>" + String(Monstera2Humidity) + "%</span></div>");
-            client.println("</div>");
-
-            // Hoya
-            client.println("<div class='sensor " + getColor(HoyaHumidity, 60) + "'>");
-            client.println("<h2>Hoya</h2>");
-            client.println("<div class='reading'>Moisture Level: <span class='humidity'>" + String(HoyaHumidity) + "%</span></div>");
-            client.println("</div>");
-
-            // Monstera 3
-            client.println("<div class='sensor " + getColor(Monstera3Humidity, 40) + "'>");
-            client.println("<h2>Monstera 3</h2>");
-            client.println("<div class='reading'>Moisture Level: <span class='humidity'>" + String(Monstera3Humidity) + "%</span></div>");
-            client.println("</div>");
-
+            
             client.println("</div></body></html>");
 
             break;
